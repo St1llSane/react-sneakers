@@ -1,49 +1,55 @@
+import styles from './Drawer.module.scss'
+
 function Drawer() {
   return (
-    <div style={{ display: 'none' }} className="fade">
-      <div className="drawer">
+    <div style={{ display: 'none' }} className={styles.fade}>
+      <div className={styles.drawer}>
         <h1>
           Корзина <img src="/images/delete.svg" alt="delete" />
         </h1>
-        <div className="drawer__wrapper">
-          <div className="drawer__wrapper-item">
+        <div className={styles.drawer__wrapper}>
+          <div className={styles.drawer__wrapperItem}>
             <img
               width={70}
               height={70}
               src="/images/sneakers/sneakers1.jpg"
               alt="sneakers"
             />
-            <div className="drawer__wrapper-item_content">
+            <div className={styles.drawer__wrapperItem_content}>
               <div>
                 <p>Мужские Кроссовки</p>
                 <p>Nike Air Max 270</p>
               </div>
-              <p className="drawer__wrapper-item_content-cost">12 999 руб.</p>
+              <p className={styles.drawer__wrapperItem_content_cost}>
+                12 999 руб.
+              </p>
             </div>
             <button>
               <img src="/images/delete.svg" alt="delete" />
             </button>
           </div>
-          <div className="drawer__wrapper-item">
+          <div className={styles.drawer__wrapperItem}>
             <img
               width={70}
               height={70}
               src="/images/sneakers/sneakers2.jpg"
               alt="sneakers"
             />
-            <div className="drawer__wrapper-item_content">
+            <div className={styles.drawer__wrapperItem_content}>
               <div>
                 <p>Мужские Кроссовки</p>
                 <p>Nike Air Max 270</p>
               </div>
-              <p className="drawer__wrapper-item_content-cost">12 999 руб.</p>
+              <p className={styles.drawer__wrapperItem_content_cost}>
+                12 999 руб.
+              </p>
             </div>
             <button>
               <img src="/images/delete.svg" alt="delete" />
             </button>
           </div>
         </div>
-        <div className="drawer__bottom">
+        <div className={styles.drawer__bottom}>
           <ul>
             <li>
               <p>Итого:</p>
@@ -56,7 +62,7 @@ function Drawer() {
               <span>1074 руб.</span>
             </li>
           </ul>
-          <button className="greenButton">Оформить заказ</button>
+          <button className={styles.greenButton}>Оформить заказ</button>
         </div>
       </div>
     </div>

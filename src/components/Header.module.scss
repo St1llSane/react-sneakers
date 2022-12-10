@@ -1,0 +1,13 @@
+.header {
+  border: 1px solid #eaeaea;
+}
+
+.headerList {
+  &__item {
+    height: 20px;
+
+		svg {
+			cursor: pointer;
+		}
+  }
+}

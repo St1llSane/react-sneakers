@@ -1,0 +1,46 @@
+.card {
+  font-size: 14px;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px 35px 15px;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 40px;
+  position: relative;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+    transform: translateY(-5px);
+  }
+
+  &__heart {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+  }
+
+  &__info {
+    width: 151px;
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  &__infoCost {
+    &_text {
+      font-size: 11px;
+      color: #bdbdbd;
+    }
+
+    &_summ {
+      font-weight: 700;
+    }
+  }
+}

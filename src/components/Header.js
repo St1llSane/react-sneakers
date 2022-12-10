@@ -1,6 +1,10 @@
+import styles from './Header.module.scss'
+
 function Header() {
   return (
-    <header className="header d-flex justify-between align-center p-40">
+    <header
+      className={`${styles.header} d-flex justify-between align-center p-40`}
+    >
       <div className="d-flex align-center">
         <img
           className="mr-15"
@@ -14,8 +18,8 @@ function Header() {
           <p className="opacity-5">Магазин лучших кроссовок</p>
         </div>
       </div>
-      <ul className="headerList d-flex">
-        <li className="headerList__item d-flex align-center mr-30">
+      <ul className={`${styles.headerList} d-flex`}>
+        <li className={`${styles.headerList__item} d-flex align-center mr-30`}>
           <svg
             className="mr-10"
             width="20"
@@ -48,7 +52,7 @@ function Header() {
           </svg>
           <span>1205 руб.</span>
         </li>
-        <li className="headerList__item">
+        <li className={styles.headerList__item}>
           <svg
             width="20"
             height="20"
