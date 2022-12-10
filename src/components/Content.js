@@ -1,34 +1,17 @@
+import { useEffect } from 'react'
+import { useState } from 'react'
 import Card from './Card'
 import styles from './Content.module.scss'
 
-const cards = [
-  {
-    sex: 'Мужские Кроссовки',
-    name: 'Nike Air Max 270',
-    price: 12999,
-    img: '/images/sneakers/sneakers1.jpg',
-  },
-  {
-    sex: 'Мужские Кроссовки',
-    name: 'Nike Blazer Mid Suede',
-    price: 15699,
-    img: '/images/sneakers/sneakers2.jpg',
-  },
-  {
-    sex: 'Мужские Кроссовки',
-    name: 'Nike Blazer Mid Suede',
-    price: 8999,
-    img: '/images/sneakers/sneakers3.jpg',
-  },
-  {
-    sex: 'Кроссовки Puma X',
-    name: 'Aka Boku Future Rider',
-    price: 9499,
-    img: '/images/sneakers/sneakers4.jpg',
-  },
-]
+function Content({addBtnChange, addToCart }) {
+  const [products, setProducts] = useState([])
 
-function Content() {
+  useEffect(() => {
+    fetch('https://6394ae454df9248eada9af70.mockapi.io/Products')
+      .then((res) => res.json())
+      .then((value) => setProducts(value))
+  }, [])
+
   return (
     <div className={`${styles.content} p-40`}>
       <div
@@ -41,12 +24,13 @@ function Content() {
         </div>
       </div>
       <div className={`${styles.sneakers}`}>
-        {cards.map((card, i) => (
+        {products.map((product, i) => (
           <Card
-            img={card.img}
-            sex={card.sex}
-            title={card.name}
-            price={card.price}
+            img={product.img}
+            sex={product.sex}
+            title={product.name}
+            price={product.price}
+            addToCart={(obj) => addToCart(obj)}
             key={i}
           />
         ))}

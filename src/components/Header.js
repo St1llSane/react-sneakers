@@ -1,6 +1,6 @@
 import styles from './Header.module.scss'
 
-function Header() {
+function Header({ onClickCart }) {
   return (
     <header
       className={`${styles.header} d-flex justify-between align-center p-40`}
@@ -19,9 +19,12 @@ function Header() {
         </div>
       </div>
       <ul className={`${styles.headerList} d-flex`}>
-        <li className={`${styles.headerList__item} d-flex align-center mr-30`}>
+        <li
+          className={`${styles.headerList__item} d-flex align-center mr-30 cu-p`}
+          onClick={onClickCart}
+        >
           <svg
-            className="mr-10"
+            className="mr-15"
             width="20"
             height="20"
             viewBox="0 0 20 20"

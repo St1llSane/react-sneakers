@@ -21,6 +21,9 @@
 }
 
 .sneakers {
-  display: flex;
-  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 210px);
+  grid-template-rows: auto;
+  justify-content: space-between;
+  grid-row-gap: 50px;
 }

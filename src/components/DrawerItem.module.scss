@@ -1,0 +1,30 @@
+.drawer {
+  &__wrapperItem {
+    font-size: 14px;
+    padding: 20px 20px 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #eaeaea;
+    border-radius: 20px;
+    overflow: hidden;
+
+    & + & {
+      margin-top: 20px;
+    }
+
+    > img {
+      margin-right: 3px;
+    }
+
+    &_content {
+      > div {
+        margin-bottom: 8px;
+      }
+
+      &_cost {
+        font-weight: 700;
+      }
+    }
+  }
+}

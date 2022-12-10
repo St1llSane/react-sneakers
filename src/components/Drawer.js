@@ -1,53 +1,18 @@
 import styles from './Drawer.module.scss'
+import DrawerItem from './DrawerItem'
 
-function Drawer() {
+function Drawer({ onClickClose, cartItems }) {
   return (
-    <div style={{ display: 'none' }} className={styles.fade}>
+    <div className={styles.fade}>
       <div className={styles.drawer}>
         <h1>
-          Корзина <img src="/images/delete.svg" alt="delete" />
+          Корзина{' '}
+          <img src="/images/delete.svg" alt="Close" onClick={onClickClose} />
         </h1>
         <div className={styles.drawer__wrapper}>
-          <div className={styles.drawer__wrapperItem}>
-            <img
-              width={70}
-              height={70}
-              src="/images/sneakers/sneakers1.jpg"
-              alt="sneakers"
-            />
-            <div className={styles.drawer__wrapperItem_content}>
-              <div>
-                <p>Мужские Кроссовки</p>
-                <p>Nike Air Max 270</p>
-              </div>
-              <p className={styles.drawer__wrapperItem_content_cost}>
-                12 999 руб.
-              </p>
-            </div>
-            <button>
-              <img src="/images/delete.svg" alt="delete" />
-            </button>
-          </div>
-          <div className={styles.drawer__wrapperItem}>
-            <img
-              width={70}
-              height={70}
-              src="/images/sneakers/sneakers2.jpg"
-              alt="sneakers"
-            />
-            <div className={styles.drawer__wrapperItem_content}>
-              <div>
-                <p>Мужские Кроссовки</p>
-                <p>Nike Air Max 270</p>
-              </div>
-              <p className={styles.drawer__wrapperItem_content_cost}>
-                12 999 руб.
-              </p>
-            </div>
-            <button>
-              <img src="/images/delete.svg" alt="delete" />
-            </button>
-          </div>
+          {cartItems.map((item, i) => {
+            return <DrawerItem item={item} key={i} />
+          })}
         </div>
         <div className={styles.drawer__bottom}>
           <ul>
