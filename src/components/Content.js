@@ -1,17 +1,7 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
 import Card from './Card'
 import styles from './Content.module.scss'
 
-function Content({addBtnChange, addToCart }) {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    fetch('https://6394ae454df9248eada9af70.mockapi.io/Products')
-      .then((res) => res.json())
-      .then((value) => setProducts(value))
-  }, [])
-
+function Content({ products, isProductAdded, addToCart }) {
   return (
     <div className={`${styles.content} p-40`}>
       <div
@@ -30,6 +20,7 @@ function Content({addBtnChange, addToCart }) {
             sex={product.sex}
             title={product.name}
             price={product.price}
+            isProductAdded={isProductAdded}
             addToCart={(obj) => addToCart(obj)}
             key={i}
           />
