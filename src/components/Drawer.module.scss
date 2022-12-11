@@ -35,6 +35,18 @@
   &__wrapper {
     flex: 1;
     overflow: auto;
+
+		&_empty {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+			h4 {
+				font-size: 24px;
+			}
+		}
   }
 
   &__wrapperItem {
@@ -127,4 +139,12 @@
   &:hover::after {
     transform: translate(5px, -50%);
   }
+
+	&:disabled {
+		background-color: #d3d3d3;
+		cursor: default;
+	}
+	&:disabled::after {
+		transform: translate(0, -50%);
+	}
 }

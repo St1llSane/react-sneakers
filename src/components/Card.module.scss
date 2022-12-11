@@ -23,6 +23,10 @@
     cursor: pointer;
   }
 
+	p {
+		max-width: 150px;
+	}
+
   &__info {
     width: 151px;
   }

@@ -3,9 +3,14 @@ import styles from './Card.module.scss'
 
 function Card({ sex, title, price, img, addToCart }) {
   const [isProductAdded, setIsProductAdded] = useState(false)
+  const [isFavourite, setIsFavourite] = useState(false)
 
   const addBtnChangeHandler = () => {
     setIsProductAdded(!isProductAdded)
+  }
+
+  const clickFavouriteHandler = () => {
+    setIsFavourite(!isFavourite)
   }
 
   const addItemHandler = () => {
@@ -15,13 +20,17 @@ function Card({ sex, title, price, img, addToCart }) {
 
   return (
     <div className={styles.card}>
-      <img className={styles.card__heart} src="images/heart.svg" alt="like" />
+      <img
+        className={styles.card__heart}
+        src={isFavourite ? 'images/heart-active.svg' : 'images/heart.svg'}
+        alt="like"
+        onClick={clickFavouriteHandler}
+      />
       <div className="mb-15">
         <img className="mb-15" src={img} alt="sneakers" />
-        <div>
-          <p>{sex}</p>
-          <p>{title}</p>
-        </div>
+        <p>
+          {sex} {title}
+        </p>
       </div>
       <div
         className={`${styles.card__info} d-flex justify-between align-center`}
