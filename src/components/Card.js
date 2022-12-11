@@ -1,21 +1,31 @@
 import { useState } from 'react'
 import styles from './Card.module.scss'
 
-function Card({ sex, title, price, img, addToCart }) {
+function Card({
+  id,
+  sex,
+  title,
+  price,
+  img,
+  favorited = false,
+  addFavourite,
+  addToCart,
+}) {
   const [isProductAdded, setIsProductAdded] = useState(false)
-  const [isFavourite, setIsFavourite] = useState(false)
+  const [isFavourite, setIsFavourite] = useState(favorited)
 
   const addBtnChangeHandler = () => {
     setIsProductAdded(!isProductAdded)
   }
 
   const clickFavouriteHandler = () => {
+    addFavourite({ id, sex, title, price, img })
     setIsFavourite(!isFavourite)
   }
 
   const addItemHandler = () => {
     addBtnChangeHandler()
-    addToCart({ sex, title, price, img })
+    addToCart({ id, sex, title, price, img })
   }
 
   return (

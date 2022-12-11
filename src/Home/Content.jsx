@@ -1,8 +1,9 @@
-import Card from './Card'
+import Card from '../components/Card'
 import styles from './Content.module.scss'
 
 function Content({
   products,
+  addFavourite,
   isProductAdded,
   addToCart,
   searchInputValue,
@@ -38,13 +39,11 @@ function Content({
           )}
         </div>
       </div>
-      <div className={`${styles.sneakers}`}>
+      <div className={styles.sneakers}>
         {filterSearchCards(products).map((product, i) => (
           <Card
-            img={product.img}
-            sex={product.sex}
-            title={product.title}
-            price={product.price}
+            {...product}
+            addFavourite={(obj) => addFavourite(obj)}
             isProductAdded={isProductAdded}
             addToCart={(obj) => addToCart(obj)}
             key={i}

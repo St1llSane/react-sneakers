@@ -1,13 +1,17 @@
 .content {
   &__top {
     margin-bottom: 35px;
+
+		h1 {
+			font-size: 32px;
+		}
   }
 }
 
 .search {
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  padding: 15px 55px 15px 15px;
+  padding: 12px 55px 12px 15px;
 	position: relative;
 
   img:first-child {
@@ -16,7 +20,7 @@
 
 	img:last-child {
 		position: absolute;
-		top: 13px;
+		top: 10px;
 		right: 10px;
 		width: 25px;
 		height: 25px;
