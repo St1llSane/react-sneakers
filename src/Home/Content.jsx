@@ -2,7 +2,6 @@ import Card from '../components/Card'
 import styles from './Content.module.scss'
 
 function Content({
-  cartItems,
   products,
   addFavourite,
   isProductAdded,
@@ -12,6 +11,7 @@ function Content({
   searchInputHandler,
   itemsLoading,
 }) {
+
   const filterSearchCards = (products) => {
     return products.filter((product) =>
       product.title.toLowerCase().includes(searchInputValue.toLowerCase())
@@ -26,7 +26,6 @@ function Content({
           addFavourite={(obj) => addFavourite(obj)}
           isProductAdded={isProductAdded}
           addToCart={(obj) => addToCart(obj)}
-          cartAdded={cartItems.some((obj) => +product.id === +obj.id)}
           isLoaded={itemsLoading}
           key={i}
         />
