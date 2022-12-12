@@ -13,29 +13,43 @@ function App() {
   const [favourites, setFavourites] = useState([])
   const [cartItems, setCartItems] = useState([])
   const [searchInputValue, setSearchInputValue] = useState('')
+  const [itemsLoading, setItemsLoading] = useState(true)
 
   useEffect(() => {
     // fetch('https://6394ae454df9248eada9af70.mockapi.io/Products')
     //   .then((res) => res.json())
     //   .then((value) => setProducts(value))
 
-    axios
-      .get('https://6394ae454df9248eada9af70.mockapi.io/Products')
-      .then((res) => setProducts(res.data))
+    async function fetchData() {
+      const itemsResponse = await axios.get(
+        'https://6394ae454df9248eada9af70.mockapi.io/Products'
+      )
+      const cartItemsResponse = await axios.get(
+				'https://6394ae454df9248eada9af70.mockapi.io/cart'
+				)
+				setItemsLoading(false)
+      const favoritesResponse = await axios.get(
+        'https://6394ae454df9248eada9af70.mockapi.io/favourites'
+      )
 
-    axios
-      .get('https://6394ae454df9248eada9af70.mockapi.io/cart')
-      .then((res) => setCartItems(res.data))
 
-    axios
-      .get('https://6394ae454df9248eada9af70.mockapi.io/favourites')
-      .then((res) => setFavourites(res.data))
+      setFavourites(favoritesResponse.data)
+      setCartItems(cartItemsResponse.data)
+      setProducts(itemsResponse.data)
+    }
+
+    fetchData()
   }, [])
 
   const addItemToCartHandler = (obj) => {
-    axios
-      .post('https://6394ae454df9248eada9af70.mockapi.io/cart', obj)
-      .then((res) => setCartItems((prev) => [...prev, res.data]))
+    if (cartItems.find((item) => +item.id === +obj.id)) {
+      axios.delete(`https://6394ae454df9248eada9af70.mockapi.io/cart/${obj.id}`)
+      setCartItems((prev) => prev.filter((item) => +item.id !== +obj.id))
+    } else {
+      axios
+        .post('https://6394ae454df9248eada9af70.mockapi.io/cart', obj)
+        .then((res) => setCartItems((prev) => [...prev, res.data]))
+    }
   }
 
   const removeCardItemHandler = (id) => {
@@ -82,12 +96,14 @@ function App() {
           path="/"
           element={
             <Content
+              cartItems={cartItems}
               products={products}
               addFavourite={addFavourite}
               addToCart={addItemToCartHandler}
               searchInputValue={searchInputValue}
               setSearchInputValue={setSearchInputValue}
               searchInputHandler={searchInputHandler}
+              itemsLoading={itemsLoading}
             />
           }
         ></Route>

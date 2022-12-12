@@ -2,6 +2,7 @@ import Card from '../components/Card'
 import styles from './Content.module.scss'
 
 function Content({
+  cartItems,
   products,
   addFavourite,
   isProductAdded,
@@ -9,10 +10,27 @@ function Content({
   searchInputValue,
   setSearchInputValue,
   searchInputHandler,
+  itemsLoading,
 }) {
   const filterSearchCards = (products) => {
     return products.filter((product) =>
       product.title.toLowerCase().includes(searchInputValue.toLowerCase())
+    )
+  }
+
+  const renderItems = () => {
+    return (itemsLoading ? [...Array(7)] : filterSearchCards(products)).map(
+      (product, i) => (
+        <Card
+          {...product}
+          addFavourite={(obj) => addFavourite(obj)}
+          isProductAdded={isProductAdded}
+          addToCart={(obj) => addToCart(obj)}
+          cartAdded={cartItems.some((obj) => +product.id === +obj.id)}
+          isLoaded={itemsLoading}
+          key={i}
+        />
+      )
     )
   }
 
@@ -39,17 +57,7 @@ function Content({
           )}
         </div>
       </div>
-      <div className={styles.sneakers}>
-        {filterSearchCards(products).map((product, i) => (
-          <Card
-            {...product}
-            addFavourite={(obj) => addFavourite(obj)}
-            isProductAdded={isProductAdded}
-            addToCart={(obj) => addToCart(obj)}
-            key={i}
-          />
-        ))}
-      </div>
+      <div className={styles.sneakers}>{renderItems()}</div>
     </div>
   )
 }
