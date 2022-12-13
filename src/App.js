@@ -5,8 +5,8 @@ import axios from 'axios'
 import styles from './App.module.scss'
 import Drawer from './components/Drawer'
 import Header from './components/Header'
-import Content from './Home/Content'
-import Favorites from './Home/Favorites'
+import Content from './pages/Content'
+import Favorites from './pages/Favorites'
 
 function App() {
   const [cartOpened, setCartOpened] = useState(false)
@@ -64,7 +64,7 @@ function App() {
         axios.delete(
           `https://6394ae454df9248eada9af70.mockapi.io/favourites/${obj.id}`
         )
-        // setFavourites((prev) => prev.filter((item) => item.id !== obj.id))
+        setFavourites((prev) => prev.filter((item) => +item.id !== +obj.id))
       } else {
         const { data } = await axios.post(
           'https://6394ae454df9248eada9af70.mockapi.io/favourites',
@@ -87,7 +87,9 @@ function App() {
   }
 
   return (
-    <AppContext.Provider value={{ favourites, addFavourite, isItemAdded }}>
+    <AppContext.Provider
+      value={{ favourites, addFavourite, isItemAdded, setCartItems }}
+    >
       <div className={styles.wrapper}>
         {cartOpened ? (
           <Drawer
