@@ -7,7 +7,7 @@ import DrawerItem from './DrawerItem'
 
 // const delay = new Promise((resolve) => setTimeout(resolve, 1000))
 
-function Drawer({ onClickClose, removeCardItem }) {
+function Drawer({ onClickClose, removeCardItem, opened }) {
   const { cartItems, setCartItems, totalCartPrice, totalCartPriceTax } =
     useCart()
   const [isOrderComplete, setIsOrderComplete] = useState(false)
@@ -38,7 +38,7 @@ function Drawer({ onClickClose, removeCardItem }) {
   }
 
   return (
-    <div className={styles.fade}>
+    <div className={`${styles.fade} ${opened ? styles.visible : ''}`}>
       <div className={styles.drawer}>
         <h1>
           Корзина

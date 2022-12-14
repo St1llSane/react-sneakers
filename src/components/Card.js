@@ -17,13 +17,15 @@ function Card({
   const [isFavourite, setIsFavourite] = useState(favorited)
   const { isItemAdded } = useContext(AppContext)
 
+  const obj = { id, parentId: id, sex, title, price, img }
+
   const clickFavouriteHandler = () => {
-    addFavourite({ id, sex, title, price, img })
+    addFavourite(obj)
     setIsFavourite(!isFavourite)
   }
 
   const addItemHandler = () => {
-    addToCart({ id, sex, title, price, img })
+    addToCart(obj)
   }
 
   return (
@@ -45,12 +47,14 @@ function Card({
         </ContentLoader>
       ) : (
         <>
-          {addFavourite && <img
-            className={styles.card__heart}
-            src={isFavourite ? 'images/heart-active.svg' : 'images/heart.svg'}
-            alt="like"
-            onClick={clickFavouriteHandler}
-          />}
+          {addFavourite && (
+            <img
+              className={styles.card__heart}
+              src={isFavourite ? 'images/heart-active.svg' : 'images/heart.svg'}
+              alt="like"
+              onClick={clickFavouriteHandler}
+            />
+          )}
           <div className="mb-15">
             <img className="mb-15" src={img} alt="sneakers" />
             <p>
