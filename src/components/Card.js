@@ -45,12 +45,12 @@ function Card({
         </ContentLoader>
       ) : (
         <>
-          <img
+          {addFavourite && <img
             className={styles.card__heart}
             src={isFavourite ? 'images/heart-active.svg' : 'images/heart.svg'}
             alt="like"
             onClick={clickFavouriteHandler}
-          />
+          />}
           <div className="mb-15">
             <img className="mb-15" src={img} alt="sneakers" />
             <p>
@@ -66,14 +66,18 @@ function Card({
               </span>
               <span className={styles.card__infoCost_summ}>{price} руб.</span>
             </div>
-            <button className={styles.card__button} onClick={addItemHandler}>
-              <img
-                src={
-                  isItemAdded(id) ? '/images/btn-checked.svg' : '/images/btn.svg'
-                }
-                alt="plus"
-              />
-            </button>
+            {addToCart && (
+              <button className={styles.card__button} onClick={addItemHandler}>
+                <img
+                  src={
+                    isItemAdded(id)
+                      ? '/images/btn-checked.svg'
+                      : '/images/btn.svg'
+                  }
+                  alt="plus"
+                />
+              </button>
+            )}
           </div>
         </>
       )}

@@ -7,6 +7,7 @@ import Drawer from './components/Drawer'
 import Header from './components/Header'
 import Content from './pages/Content'
 import Favorites from './pages/Favorites'
+import Orders from './pages/Orders'
 
 function App() {
   const [cartOpened, setCartOpened] = useState(false)
@@ -88,7 +89,13 @@ function App() {
 
   return (
     <AppContext.Provider
-      value={{ favourites, addFavourite, isItemAdded, setCartItems }}
+      value={{
+        favourites,
+        addFavourite,
+        isItemAdded,
+        cartItems,
+        setCartItems,
+      }}
     >
       <div className={styles.wrapper}>
         {cartOpened ? (
@@ -98,7 +105,7 @@ function App() {
             removeCardItem={removeCardItemHandler}
           />
         ) : null}
-        <Header onClickCart={() => setCartOpened(true)} />
+        <Header onClickCart={() => setCartOpened(true)} cartItems={cartItems} />
         <Routes>
           <Route
             path="/"
@@ -118,6 +125,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/favorites" element={<Favorites />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/orders" element={<Orders />}></Route>
         </Routes>
       </div>
     </AppContext.Provider>

@@ -1,17 +1,19 @@
 import axios from 'axios'
-import { useContext } from 'react'
 import { useState } from 'react'
-import AppContext from '../context'
+import { useCart } from '../hooks/useCart'
 import Info from '../pages/Info'
 import styles from './Drawer.module.scss'
 import DrawerItem from './DrawerItem'
 
 // const delay = new Promise((resolve) => setTimeout(resolve, 1000))
 
-function Drawer({ onClickClose, cartItems, removeCardItem }) {
-  const { setCartItems } = useContext(AppContext)
+function Drawer({ onClickClose, removeCardItem }) {
+  const { cartItems, setCartItems, totalCartPrice, totalCartPriceTax } =
+    useCart()
   const [isOrderComplete, setIsOrderComplete] = useState(false)
   const [orderId, setOrderId] = useState(null)
+
+  // const totalCartPriceTax = (totalCartPrice - totalCartPrice * 0.95).toFixed(2)
 
   const onSendOrder = async () => {
     try {
@@ -74,12 +76,12 @@ function Drawer({ onClickClose, cartItems, removeCardItem }) {
             <li>
               <p>Итого:</p>
               <div></div>
-              <span>21 498 руб.</span>
+              <span>{totalCartPrice} руб.</span>
             </li>
             <li>
               <p>Налог 5%: </p>
               <div></div>
-              <span>1074 руб.</span>
+              <span>{totalCartPriceTax} руб.</span>
             </li>
           </ul>
           <button
